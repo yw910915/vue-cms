@@ -31,7 +31,7 @@ export default {
     methods: {
         getNewsInfo(){
             this.$http.get('getnew/'+this.id).then(result=>{
-                console.log(result)
+                // console.log(result)
                 this.newsInfo=result.body.message[0]
             })
         }

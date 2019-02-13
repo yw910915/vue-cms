@@ -19,7 +19,8 @@
 export default {
   data() {
     return {
-      comments: []
+      pageIndex: 1, // 默认展示第一页数据
+      comments: []  //所有的评论数据
     };
   },
   created() {
@@ -27,17 +28,47 @@ export default {
   },
   methods: {
     getComments() {
-      this.$http.get("getComments" + this.id).then(result => {
+      this.$http.get("getComments/" + this.id+ "?pageindex=" + this.pageIndex).then(result => {
         console.log(result);
-        this.comments = result.body.message;
-        // 每当获取新评论数据的时候，不要把老数据清空覆盖，而是应该以老数据，拼接上新数据
+        // this.comments = result.body.message;
+          // 每当获取新评论数据的时候，不要把老数据清空覆盖，而是应该以老数据，拼接上新数据
+          this.comments = this.comments.concat(result.body.message);
       });
 
     },
     getMore(){
-        this.getComments()
+      // 加载更多
+      this.pageIndex++;
+      this.getComments();
     }
   },
   props: ["id"]
 };
 </script>
+<style lang="less" scoped>
+.cmt-container {
+  h3 {
+    font-size: 18px;
+  }
+  textarea {
+    font-size: 14px;
+    height: 85px;
+    margin: 0;
+  }
+
+  .cmt-list {
+    margin: 5px 0;
+    .cmt-item {
+      font-size: 13px;
+      .cmt-title {
+        line-height: 30px;
+        background-color: #ccc;
+      }
+      .cmt-body {
+        line-height: 35px;
+        text-indent: 2em;
+      }
+    }
+  }
+}
+</style>
