@@ -53,7 +53,7 @@ export default {
       this.$http
       .post("postcomment/"+this.id,{content:this.commentContent})
       .then(result=>{
-        console.log(result.body)
+        // console.log(result.body)
         Toast(result.body.message)
         //  // 2. 让用户看到最新的数据在1楼
         //  //  2.1 手动制造一个评论数据  加入当前comments中, vue会重新渲染
