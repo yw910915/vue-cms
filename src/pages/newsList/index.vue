@@ -31,7 +31,7 @@ export default {
       // 发送ajax请求  获取新闻列表数据
       // vue-resource
       this.$http.get("getnewslist").then(result => {
-        console.log(result)
+        // console.log(result)
         this.newsList = result.body.message;
       });
     }
