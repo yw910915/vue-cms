@@ -1,5 +1,6 @@
 <template>
   <div class="goodsinfo-container">
+    <div class="ball" v-show="ballFlag"></div>
     <!-- 商品轮播图区域 -->
     <div class="mui-card">
       <div class="mui-card-content">
@@ -32,11 +33,12 @@
             <input 
             value="+"
             type="button"
-            @click="buyCount<goodsinfo.stock_quantity && buyCount++">
+            @click="buyCount<goodsinfo.stock_quantity && buyCount++"
+            :disabled="buyCount=goodsinfo.stock_quantity">
           </div>
           <p>
             <mt-button type="primary" size="small">立即购买</mt-button>
-            <mt-button type="danger" size="small">加入购物车</mt-button>
+            <mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
             <!-- 分析： 如何实现加入购物车时候，拿到 选择的数量 -->
             <!-- 1. 经过分析发现： 按钮属于 goodsinfo 页面， 数字 属于 numberbox 组件 -->
             <!-- 2. 由于涉及到了父子组件的嵌套了，所以，无法直接在 goodsinfo 页面zhong 中获取到 选中的商品数量值-->
@@ -71,7 +73,8 @@ export default {
             id:this.$route.params.id,
             lunbotu:[],// 轮播图的数据
             goodsinfo:{},//获取到的商品信息
-            buyCount:1
+            buyCount:1,
+            ballFlag: false, // 控制小球的隐藏和显示的标识符
 
         }
     },
@@ -116,6 +119,9 @@ export default {
           // 点击跳转到 评论页面
           // this.$router.push({ path: "/home/goodscomment/" + id
           this.$router.push("/home/goodsComment/"+id)
+        },
+        addToShopCar(){
+          this.ballFlag=!this.ballFlag
         }
     },
 }
@@ -124,6 +130,7 @@ export default {
 .goodsinfo-container{
     background-color: #eee;
     overflow: hidden;
+    position: relative;
     .numbox{
         display: flex;
         height: 50px;
@@ -152,6 +159,16 @@ export default {
     button {
       margin: 15px 0;
     }
+  }
+  .ball{
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    top: 375px;
+    left: 133px;
+    z-index: 99;
   }
 }
 </style>
