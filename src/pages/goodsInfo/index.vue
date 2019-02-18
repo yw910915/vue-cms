@@ -29,15 +29,12 @@
             type="button"
             @click="buyCount>=2 && buyCount--"
             :disabled="buyCount==1">
-            <input 
-            v-model="buyCount" 
-            type="number"
-            @change="filterMaxCount">
+            <input v-model="buyCount" type="number" @change="filterMaxCount">
             <input 
             value="+"
             type="button"
             @click="buyCount<goodsinfo.stock_quantity && buyCount++"
-            :disabled="buyCount=goodsinfo.stock_quantity">
+            :disabled="buyCount==goodsinfo.stock_quantity">
           </div>
           <p>
             <mt-button type="primary" size="small">立即购买</mt-button>
@@ -125,6 +122,7 @@ export default {
         },
         addToShopCar(){ //小球添加到购物车
           this.ballFlag=!this.ballFlag
+          
         },
         //开始执行动画之前执行的钩子函数
         beforeEnter(el){

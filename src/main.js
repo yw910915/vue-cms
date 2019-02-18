@@ -45,9 +45,11 @@ Vue.component('swiper', swiper)
 import VuePreview from 'vue-pic-preview'
 Vue.use(VuePreview)
 
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+ 
   render: h => h(App)
 })
