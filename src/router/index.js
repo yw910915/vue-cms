@@ -42,6 +42,7 @@ export default new Router({
     {path:'/home/photoInfo/:id',component:photoInfoComponent},
     {path:'/home/goodsList',component:goodsListComponent},
     {path:'/home/goodsInfo/:id',component:goodsInfoComponent},
+    {path:'/home/goodsDesc/:id',component:goodsDescComponent},
     {path:'/home/goodsComment/:id',component:goodsCommentComponent},
 
 
