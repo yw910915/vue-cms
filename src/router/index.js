@@ -53,5 +53,6 @@ export default new Router({
 
 
   ],
+  //vue的linkActiveClass激活类名
   linkActiveClass:'mui-active'  //类库
 })
