@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <mt-header fixed title="固定在顶部"></mt-header>
+    <mt-header fixed title="固定在顶部">
+      <mt-button v-show="hasBackBtn" @click="$router.go(-1)" icon="back"  slot="left">返回</mt-button>
+    </mt-header>
     <transition>
       <router-view/>
     </transition>
@@ -29,7 +31,17 @@
 
 <script>
 export default {
-  name: "App"
+  name: "App",
+  data() {
+    return {
+      hasBackBtn:this.$route.path !=='/home'
+    }
+  },
+  watch: {
+    $route(to,from){
+      this.hasBackBtn=to.path !=='/home'
+    }
+  },
 };
 </script>
 
